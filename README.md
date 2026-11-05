@@ -1,1 +1,3 @@
-# jug-lightning-java-observabiltiy-talk
+# Lightning Talks ⚡ [How to add Observability to Your Java Project]
+
+
