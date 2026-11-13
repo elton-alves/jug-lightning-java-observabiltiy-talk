@@ -16,3 +16,8 @@ curl -X POST http://localhost:8080/orders \
   -H "Content-Type: application/json" \
   -d '{"amount": 5000.0, "documentId": "98765432-Z", "customerName": "Jane Doe"}'
 ```
+
+```bash
+curl -X POST http://localhost:8080/actuator
+```
+
