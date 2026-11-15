@@ -1,12 +1,16 @@
 server:
   http_listen_port: 3200
+  grpc_listen_port: 9095 # Keep Tempo's internal gRPC port separate from OTLP 4317
+
 
 distributor:
   receivers:
     otlp:
       protocols:
-        http:
         grpc:
+          endpoint: "0.0.0.0:4317"
+        http:
+          endpoint: "0.0.0.0:4318"
 
 storage:
   trace:
