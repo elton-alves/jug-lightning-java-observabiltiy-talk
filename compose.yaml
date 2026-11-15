@@ -61,7 +61,7 @@ services:
     image: prom/prometheus:latest
     command:
       - --enable-feature=exemplar-storage
-      - --enable-feature=otlp-write-receiver
+      - --web.enable-otlp-receiver
       - --web.enable-remote-write-receiver
       - --config.file=/etc/prometheus/prometheus.yml
     volumes:
