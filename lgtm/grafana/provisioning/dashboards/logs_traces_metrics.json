@@ -1,260 +1,448 @@
 {
-    "annotations": {
-        "list": [
-            {
-                "builtIn": 1,
-                "datasource": {
-                    "type": "grafana",
-                    "uid": "-- Grafana --"
-                },
-                "enable": true,
-                "hide": true,
-                "iconColor": "rgba(0, 211, 255, 1)",
-                "name": "Annotations & Alerts",
-                "target": {
-                    "limit": 100,
-                    "matchAny": false,
-                    "tags": [],
-                    "type": "dashboard"
-                },
-                "type": "dashboard"
-            }
-        ]
-    },
-    "editable": true,
-    "fiscalYearStartMonth": 0,
-    "graphTooltip": 0,
-    "id": 3,
-    "links": [],
-    "liveNow": false,
-    "panels": [
-        {
-            "datasource": {
-                "type": "loki",
-                "uid": "loki"
-            },
-            "description": "",
-            "gridPos": {
-                "h": 10,
-                "w": 23,
-                "x": 0,
-                "y": 0
-            },
-            "id": 2,
-            "options": {
-                "dedupStrategy": "none",
-                "enableLogDetails": true,
-                "prettifyLogMessage": true,
-                "showCommonLabels": true,
-                "showLabels": true,
-                "showTime": true,
-                "sortOrder": "Ascending",
-                "wrapLogMessage": true
-            },
-            "targets": [
-                {
-                    "datasource": {
-                        "type": "loki",
-                        "uid": "loki"
-                    },
-                    "editorMode": "builder",
-                    "expr": "{job=~\".+\"} |= `$traceId` | json | line_format \"{{.severity}} {{.service_name}} {{.body}}\" ",
-                    "queryType": "range",
-                    "refId": "A"
-                }
-            ],
-            "title": "Logs with trace ID $traceId",
-            "type": "logs"
+    "apiVersion": "dashboard.grafana.app/v2",
+    "kind": "Dashboard",
+    "metadata": {
+        "name": "edz2d9w1so8aoa",
+        "namespace": "default",
+        "uid": "d7bb211d-babf-40e1-96df-5d39bac7f4dd",
+        "resourceVersion": "1794834631349006",
+        "generation": 1,
+        "creationTimestamp": "2026-11-16T13:10:31Z",
+        "labels": {
+            "grafana.app/deprecatedInternalID": "1120959568052224"
         },
-        {
-            "datasource": {
-                "type": "tempo",
-                "uid": "tempo"
-            },
-            "description": "",
-            "gridPos": {
-                "h": 15,
-                "w": 23,
-                "x": 0,
-                "y": 10
-            },
-            "id": 6,
-            "targets": [
-                {
-                    "datasource": {
-                        "type": "tempo",
-                        "uid": "tempo"
-                    },
-                    "filters": [
-                        {
-                            "id": "015bc435",
-                            "operator": "=",
-                            "scope": "span"
-                        }
-                    ],
-                    "limit": 20,
-                    "query": "$traceId",
-                    "queryType": "traceql",
-                    "refId": "A",
-                    "tableType": "traces"
-                }
-            ],
-            "title": "Trace View for trace with id $traceId",
-            "type": "traces"
-        },
-        {
-            "datasource": {
-                "type": "prometheus",
-                "uid": "PBFA97CFB590B2093"
-            },
-            "fieldConfig": {
-                "defaults": {
-                    "color": {
-                        "mode": "palette-classic"
-                    },
-                    "custom": {
-                        "axisBorderShow": false,
-                        "axisCenteredZero": false,
-                        "axisColorMode": "text",
-                        "axisLabel": "",
-                        "axisPlacement": "auto",
-                        "barAlignment": 0,
-                        "drawStyle": "line",
-                        "fillOpacity": 0,
-                        "gradientMode": "none",
-                        "hideFrom": {
-                            "legend": false,
-                            "tooltip": false,
-                            "viz": false
-                        },
-                        "insertNulls": false,
-                        "lineInterpolation": "linear",
-                        "lineWidth": 1,
-                        "pointSize": 5,
-                        "scaleDistribution": {
-                            "type": "linear"
-                        },
-                        "showPoints": "auto",
-                        "spanNulls": false,
-                        "stacking": {
-                            "group": "A",
-                            "mode": "none"
-                        },
-                        "thresholdsStyle": {
-                            "mode": "off"
-                        }
-                    },
-                    "mappings": [],
-                    "thresholds": {
-                        "mode": "absolute",
-                        "steps": [
-                            {
-                                "color": "green",
-                                "value": null
-                            },
-                            {
-                                "color": "red",
-                                "value": 80
-                            }
-                        ]
-                    },
-                    "unit": "ms"
-                },
-                "overrides": []
-            },
-            "gridPos": {
-                "h": 10,
-                "w": 23,
-                "x": 0,
-                "y": 25
-            },
-            "id": 4,
-            "options": {
-                "legend": {
-                    "calcs": [],
-                    "displayMode": "list",
-                    "placement": "bottom",
-                    "showLegend": true
-                },
-                "tooltip": {
-                    "mode": "single",
-                    "sort": "none"
-                }
-            },
-            "targets": [
-                {
-                    "datasource": {
-                        "type": "prometheus",
-                        "uid": "PBFA97CFB590B2093"
-                    },
-                    "editorMode": "code",
-                    "exemplar": true,
-                    "expr": "histogram_quantile(1.00, sum(rate(cxf_server_requests_seconds_bucket{uri=~\".*\"}[$__rate_interval])) by (le))",
-                    "legendFormat": "max",
-                    "range": true,
-                    "refId": "A"
-                },
-                {
-                    "datasource": {
-                        "type": "prometheus",
-                        "uid": "PBFA97CFB590B2093"
-                    },
-                    "editorMode": "code",
-                    "exemplar": true,
-                    "expr": "histogram_quantile(0.99, sum(rate(cxf_server_requests_seconds_bucket{uri=~\".*\"}[$__rate_interval])) by (le))",
-                    "hide": false,
-                    "legendFormat": "tp99",
-                    "range": true,
-                    "refId": "B"
-                },
-                {
-                    "datasource": {
-                        "type": "prometheus",
-                        "uid": "PBFA97CFB590B2093"
-                    },
-                    "editorMode": "code",
-                    "exemplar": true,
-                    "expr": "histogram_quantile(0.95, sum(rate(cxf_server_requests_seconds_bucket{uri=~\".*\"}[$__rate_interval])) by (le))",
-                    "hide": false,
-                    "legendFormat": "tp95",
-                    "range": true,
-                    "refId": "C"
-                }
-            ],
-            "title": "latency for All",
-            "type": "timeseries"
+        "annotations": {
+            "grafana.app/createdBy": "access-policy:service",
+            "grafana.app/managedBy": "classic-file-provisioning",
+            "grafana.app/managerId": "dashboards",
+            "grafana.app/sourceChecksum": "acdf67981d6ddba0ed52c2b9128ff6de",
+            "grafana.app/sourcePath": "/etc/grafana/provisioning/dashboards/logs_traces_metrics.json",
+            "grafana.app/sourceTimestamp": "1793647919000",
+            "grafana.app/updatedBy": "access-policy:service",
+            "grafana.app/folder": ""
         }
-    ],
-    "schemaVersion": 39,
-    "tags": [],
-    "templating": {
-        "list": [
+    },
+    "spec": {
+        "annotations": [
             {
-                "current": {
-                    "selected": false
-                },
-                "description": "Trace Id",
-                "hide": 0,
-                "includeAll": false,
-                "label": "Trace ID",
-                "multi": false,
-                "name": "traceId",
-                "options": [],
-                "query": "",
-                "queryValue": "",
-                "skipUrlSync": false,
-                "type": "custom"
+                "kind": "AnnotationQuery",
+                "spec": {
+                    "builtIn": true,
+                    "enable": true,
+                    "hide": true,
+                    "iconColor": "rgba(0, 211, 255, 1)",
+                    "name": "Annotations & Alerts",
+                    "query": {
+                        "datasource": {
+                            "name": "-- Grafana --"
+                        },
+                        "group": "grafana",
+                        "kind": "DataQuery",
+                        "spec": {
+                            "limit": 100,
+                            "matchAny": false,
+                            "tags": [],
+                            "type": "dashboard"
+                        },
+                        "version": "v0"
+                    }
+                }
+            }
+        ],
+        "cursorSync": "Off",
+        "editable": true,
+        "elements": {
+            "panel-2": {
+                "kind": "Panel",
+                "spec": {
+                    "data": {
+                        "kind": "QueryGroup",
+                        "spec": {
+                            "queries": [
+                                {
+                                    "kind": "PanelQuery",
+                                    "spec": {
+                                        "hidden": false,
+                                        "query": {
+                                            "datasource": {
+                                                "name": "loki"
+                                            },
+                                            "group": "loki",
+                                            "kind": "DataQuery",
+                                            "spec": {
+                                                "direction": "backward",
+                                                "editorMode": "builder",
+                                                "expr": "{service_name=~\".+\"} | trace_id = `$traceId`",
+                                                "queryType": "range"
+                                            },
+                                            "version": "v0"
+                                        },
+                                        "refId": "A"
+                                    }
+                                }
+                            ],
+                            "queryOptions": {},
+                            "transformations": []
+                        }
+                    },
+                    "description": "",
+                    "id": 2,
+                    "links": [],
+                    "title": "Logs with trace ID $traceId",
+                    "vizConfig": {
+                        "group": "logs",
+                        "kind": "VizConfig",
+                        "spec": {
+                            "fieldConfig": {
+                                "defaults": {},
+                                "overrides": []
+                            },
+                            "options": {
+                                "dedupStrategy": "none",
+                                "enableInfiniteScrolling": false,
+                                "enableLogDetails": true,
+                                "prettifyLogMessage": true,
+                                "showCommonLabels": true,
+                                "showControls": false,
+                                "showFieldSelector": false,
+                                "showLabels": true,
+                                "showLevel": true,
+                                "showLogAttributes": true,
+                                "showTime": true,
+                                "sortOrder": "Ascending",
+                                "timestampResolution": "ms",
+                                "unwrappedColumns": false,
+                                "wrapLogMessage": true
+                            }
+                        },
+                        "version": "13.3.1"
+                    }
+                }
+            },
+            "panel-4": {
+                "kind": "Panel",
+                "spec": {
+                    "data": {
+                        "kind": "QueryGroup",
+                        "spec": {
+                            "queries": [
+                                {
+                                    "kind": "PanelQuery",
+                                    "spec": {
+                                        "hidden": false,
+                                        "query": {
+                                            "datasource": {
+                                                "name": "PBFA97CFB590B2093"
+                                            },
+                                            "group": "prometheus",
+                                            "kind": "DataQuery",
+                                            "spec": {
+                                                "editorMode": "code",
+                                                "exemplar": true,
+                                                "expr": "histogram_quantile(1.00, sum(rate(cxf_server_requests_seconds_bucket{uri=~\".*\"}[$__rate_interval])) by (le))",
+                                                "legendFormat": "max",
+                                                "range": true
+                                            },
+                                            "version": "v0"
+                                        },
+                                        "refId": "A"
+                                    }
+                                },
+                                {
+                                    "kind": "PanelQuery",
+                                    "spec": {
+                                        "hidden": false,
+                                        "query": {
+                                            "datasource": {
+                                                "name": "PBFA97CFB590B2093"
+                                            },
+                                            "group": "prometheus",
+                                            "kind": "DataQuery",
+                                            "spec": {
+                                                "editorMode": "code",
+                                                "exemplar": true,
+                                                "expr": "histogram_quantile(0.99, sum(rate(cxf_server_requests_seconds_bucket{uri=~\".*\"}[$__rate_interval])) by (le))",
+                                                "legendFormat": "tp99",
+                                                "range": true
+                                            },
+                                            "version": "v0"
+                                        },
+                                        "refId": "B"
+                                    }
+                                },
+                                {
+                                    "kind": "PanelQuery",
+                                    "spec": {
+                                        "hidden": false,
+                                        "query": {
+                                            "datasource": {
+                                                "name": "PBFA97CFB590B2093"
+                                            },
+                                            "group": "prometheus",
+                                            "kind": "DataQuery",
+                                            "spec": {
+                                                "editorMode": "code",
+                                                "exemplar": true,
+                                                "expr": "histogram_quantile(0.95, sum(rate(cxf_server_requests_seconds_bucket{uri=~\".*\"}[$__rate_interval])) by (le))",
+                                                "legendFormat": "tp95",
+                                                "range": true
+                                            },
+                                            "version": "v0"
+                                        },
+                                        "refId": "C"
+                                    }
+                                }
+                            ],
+                            "queryOptions": {},
+                            "transformations": []
+                        }
+                    },
+                    "description": "",
+                    "id": 4,
+                    "links": [],
+                    "title": "latency for All",
+                    "vizConfig": {
+                        "group": "timeseries",
+                        "kind": "VizConfig",
+                        "spec": {
+                            "fieldConfig": {
+                                "defaults": {
+                                    "color": {
+                                        "mode": "palette-classic"
+                                    },
+                                    "custom": {
+                                        "axisBorderShow": false,
+                                        "axisCenteredZero": false,
+                                        "axisColorMode": "text",
+                                        "axisLabel": "",
+                                        "axisPlacement": "auto",
+                                        "barAlignment": 0,
+                                        "barWidthFactor": 0.6,
+                                        "drawStyle": "line",
+                                        "fillOpacity": 0,
+                                        "gradientMode": "none",
+                                        "hideFrom": {
+                                            "legend": false,
+                                            "tooltip": false,
+                                            "viz": false
+                                        },
+                                        "insertNulls": false,
+                                        "lineInterpolation": "linear",
+                                        "lineWidth": 1,
+                                        "pointSize": 5,
+                                        "scaleDistribution": {
+                                            "type": "linear"
+                                        },
+                                        "showPoints": "auto",
+                                        "showValues": false,
+                                        "spanNulls": false,
+                                        "stacking": {
+                                            "group": "A",
+                                            "mode": "none"
+                                        },
+                                        "thresholdsStyle": {
+                                            "mode": "off"
+                                        }
+                                    },
+                                    "thresholds": {
+                                        "mode": "absolute",
+                                        "steps": [
+                                            {
+                                                "color": "green",
+                                                "value": 0
+                                            },
+                                            {
+                                                "color": "red",
+                                                "value": 80
+                                            }
+                                        ]
+                                    },
+                                    "unit": "ms"
+                                },
+                                "overrides": []
+                            },
+                            "options": {
+                                "legend": {
+                                    "calcs": [],
+                                    "displayMode": "list",
+                                    "placement": "bottom",
+                                    "showLegend": true
+                                },
+                                "tooltip": {
+                                    "hideZeros": false,
+                                    "mode": "single",
+                                    "sort": "none"
+                                }
+                            }
+                        },
+                        "version": "13.3.1"
+                    }
+                }
+            },
+            "panel-6": {
+                "kind": "Panel",
+                "spec": {
+                    "data": {
+                        "kind": "QueryGroup",
+                        "spec": {
+                            "queries": [
+                                {
+                                    "kind": "PanelQuery",
+                                    "spec": {
+                                        "hidden": false,
+                                        "query": {
+                                            "datasource": {
+                                                "name": "tempo"
+                                            },
+                                            "group": "tempo",
+                                            "kind": "DataQuery",
+                                            "spec": {
+                                                "filters": [
+                                                    {
+                                                        "id": "015bc435",
+                                                        "operator": "=",
+                                                        "scope": "span"
+                                                    }
+                                                ],
+                                                "limit": 20,
+                                                "query": "$traceId",
+                                                "queryType": "traceql",
+                                                "tableType": "traces"
+                                            },
+                                            "version": "v0"
+                                        },
+                                        "refId": "A"
+                                    }
+                                }
+                            ],
+                            "queryOptions": {},
+                            "transformations": []
+                        }
+                    },
+                    "description": "",
+                    "id": 6,
+                    "links": [],
+                    "title": "Trace View for trace with id $traceId",
+                    "vizConfig": {
+                        "group": "traces",
+                        "kind": "VizConfig",
+                        "spec": {
+                            "fieldConfig": {
+                                "defaults": {},
+                                "overrides": []
+                            },
+                            "options": {
+                                "spanFilters": {
+                                    "criticalPathOnly": false,
+                                    "matchesOnly": false
+                                }
+                            }
+                        },
+                        "version": "13.3.1"
+                    }
+                }
+            }
+        },
+        "layout": {
+            "kind": "GridLayout",
+            "spec": {
+                "items": [
+                    {
+                        "kind": "GridLayoutItem",
+                        "spec": {
+                            "element": {
+                                "kind": "ElementReference",
+                                "name": "panel-2"
+                            },
+                            "height": 10,
+                            "width": 23,
+                            "x": 0,
+                            "y": 0
+                        }
+                    },
+                    {
+                        "kind": "GridLayoutItem",
+                        "spec": {
+                            "element": {
+                                "kind": "ElementReference",
+                                "name": "panel-6"
+                            },
+                            "height": 15,
+                            "width": 23,
+                            "x": 0,
+                            "y": 10
+                        }
+                    },
+                    {
+                        "kind": "GridLayoutItem",
+                        "spec": {
+                            "element": {
+                                "kind": "ElementReference",
+                                "name": "panel-4"
+                            },
+                            "height": 10,
+                            "width": 23,
+                            "x": 0,
+                            "y": 25
+                        }
+                    }
+                ]
+            }
+        },
+        "links": [],
+        "liveNow": false,
+        "preferences": {
+            "layout": {
+                "kind": "GridLayout",
+                "spec": {
+                    "items": []
+                }
+            }
+        },
+        "preload": false,
+        "tags": [],
+        "timeSettings": {
+            "autoRefresh": "",
+            "autoRefreshIntervals": [
+                "5s",
+                "10s",
+                "30s",
+                "1m",
+                "5m",
+                "15m",
+                "30m",
+                "1h",
+                "2h",
+                "1d"
+            ],
+            "fiscalYearStartMonth": 0,
+            "from": "now-15m",
+            "hideTimepicker": false,
+            "timezone": "browser",
+            "to": "now"
+        },
+        "title": "Logs, Traces, Metrics",
+        "variables": [
+            {
+                "kind": "CustomVariable",
+                "spec": {
+                    "allowCustomValue": true,
+                    "current": {
+                        "text": "",
+                        "value": ""
+                    },
+                    "description": "Trace Id",
+                    "hide": "dontHide",
+                    "includeAll": false,
+                    "label": "Trace ID",
+                    "multi": false,
+                    "name": "traceId",
+                    "options": [],
+                    "query": "",
+                    "skipUrlSync": false,
+                    "valuesFormat": "csv"
+                }
             }
         ]
-    },
-    "time": {
-        "from": "now-15m",
-        "to": "now"
-    },
-    "timepicker": {},
-    "timezone": "",
-    "title": "Logs, Traces, Metrics",
-    "uid": "edz2d9w1so8aoa",
-    "version": 1,
-    "weekStart": ""
+    }
 }
