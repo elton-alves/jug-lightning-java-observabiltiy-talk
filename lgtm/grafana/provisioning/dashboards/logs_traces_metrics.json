@@ -139,7 +139,7 @@
                                             "spec": {
                                                 "editorMode": "code",
                                                 "exemplar": true,
-                                                "expr": "histogram_quantile(1.00, sum(rate(cxf_server_requests_seconds_bucket{uri=~\".*\"}[$__rate_interval])) by (le))",
+                                                "expr": "histogram_quantile(1.00, sum(rate(http_server_requests_milliseconds_bucket{uri=~\".*\"}[$__rate_interval])) by (le))",
                                                 "legendFormat": "max",
                                                 "range": true
                                             },
@@ -161,7 +161,7 @@
                                             "spec": {
                                                 "editorMode": "code",
                                                 "exemplar": true,
-                                                "expr": "histogram_quantile(0.99, sum(rate(cxf_server_requests_seconds_bucket{uri=~\".*\"}[$__rate_interval])) by (le))",
+                                                "expr": "histogram_quantile(0.99, sum(rate(http_server_requests_milliseconds_bucket{uri=~\".*\"}[$__rate_interval])) by (le))",
                                                 "legendFormat": "tp99",
                                                 "range": true
                                             },
@@ -183,7 +183,7 @@
                                             "spec": {
                                                 "editorMode": "code",
                                                 "exemplar": true,
-                                                "expr": "histogram_quantile(0.95, sum(rate(cxf_server_requests_seconds_bucket{uri=~\".*\"}[$__rate_interval])) by (le))",
+                                                "expr": "histogram_quantile(0.95, sum(rate(http_server_requests_milliseconds_bucket{uri=~\".*\"}[$__rate_interval])) by (le))",
                                                 "legendFormat": "tp95",
                                                 "range": true
                                             },
