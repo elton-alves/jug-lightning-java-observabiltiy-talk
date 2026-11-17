@@ -1,3 +1,26 @@
 spring:
   application:
     name: demo-service
+
+# Exporting metrics
+management.otlp:
+        metrics: # enabled by default
+          export:
+            url: http://localhost:4318/v1/metrics
+            step: 15s
+
+# Exporting traces
+management.tracing:
+    # Default sampling
+    sampling:
+      probability: 1.0
+management.opentelemetry.tracing:
+  export:
+    otlp:
+      endpoint: http://localhost:4318/v1/traces
+
+# Exporting Logs
+management.opentelemetry.logging:
+  export:
+    otlp:
+      endpoint: http://localhost:4318/v1/logs

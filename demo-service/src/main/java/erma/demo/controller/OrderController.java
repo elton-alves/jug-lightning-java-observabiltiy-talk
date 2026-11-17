@@ -13,9 +13,12 @@ public class OrderController {
 
     private static final Logger log = LoggerFactory.getLogger(OrderController.class);
 
-    private final RestClient restClient = RestClient.create();
+    private final RestClient restClient;
 
-
+    // Injecting spring rest client builder bean with pre-configured trace propagation
+    public OrderController(RestClient.Builder clientBuilder) {
+        restClient = clientBuilder.build();
+    }
 
     @PostMapping("/orders")
     public ResponseEntity<String> createOrder(@RequestBody OrderRequest request) {
