@@ -4,20 +4,20 @@
     "metadata": {
         "name": "edz2d9w1so8aoa",
         "namespace": "default",
-        "uid": "d7bb211d-babf-40e1-96df-5d39bac7f4dd",
-        "resourceVersion": "1794834631349006",
+        "uid": "90696e5a-d1d0-47cf-9186-cbde39219863",
+        "resourceVersion": "1794855231188991",
         "generation": 1,
-        "creationTimestamp": "2026-11-16T13:10:31Z",
+        "creationTimestamp": "2026-11-16T18:53:51Z",
         "labels": {
-            "grafana.app/deprecatedInternalID": "1120959568052224"
+            "grafana.app/deprecatedInternalID": "1207361562255360"
         },
         "annotations": {
             "grafana.app/createdBy": "access-policy:service",
             "grafana.app/managedBy": "classic-file-provisioning",
             "grafana.app/managerId": "dashboards",
-            "grafana.app/sourceChecksum": "acdf67981d6ddba0ed52c2b9128ff6de",
+            "grafana.app/sourceChecksum": "a833888f9f1c80106de6f25da618f991",
             "grafana.app/sourcePath": "/etc/grafana/provisioning/dashboards/logs_traces_metrics.json",
-            "grafana.app/sourceTimestamp": "1793647919000",
+            "grafana.app/sourceTimestamp": "1794836917000",
             "grafana.app/updatedBy": "access-policy:service",
             "grafana.app/folder": ""
         }
@@ -119,166 +119,6 @@
                     }
                 }
             },
-            "panel-4": {
-                "kind": "Panel",
-                "spec": {
-                    "data": {
-                        "kind": "QueryGroup",
-                        "spec": {
-                            "queries": [
-                                {
-                                    "kind": "PanelQuery",
-                                    "spec": {
-                                        "hidden": false,
-                                        "query": {
-                                            "datasource": {
-                                                "name": "PBFA97CFB590B2093"
-                                            },
-                                            "group": "prometheus",
-                                            "kind": "DataQuery",
-                                            "spec": {
-                                                "editorMode": "code",
-                                                "exemplar": true,
-                                                "expr": "histogram_quantile(1.00, sum(rate(http_server_requests_milliseconds_bucket{uri=~\".*\"}[$__rate_interval])) by (le))",
-                                                "legendFormat": "max",
-                                                "range": true
-                                            },
-                                            "version": "v0"
-                                        },
-                                        "refId": "A"
-                                    }
-                                },
-                                {
-                                    "kind": "PanelQuery",
-                                    "spec": {
-                                        "hidden": false,
-                                        "query": {
-                                            "datasource": {
-                                                "name": "PBFA97CFB590B2093"
-                                            },
-                                            "group": "prometheus",
-                                            "kind": "DataQuery",
-                                            "spec": {
-                                                "editorMode": "code",
-                                                "exemplar": true,
-                                                "expr": "histogram_quantile(0.99, sum(rate(http_server_requests_milliseconds_bucket{uri=~\".*\"}[$__rate_interval])) by (le))",
-                                                "legendFormat": "tp99",
-                                                "range": true
-                                            },
-                                            "version": "v0"
-                                        },
-                                        "refId": "B"
-                                    }
-                                },
-                                {
-                                    "kind": "PanelQuery",
-                                    "spec": {
-                                        "hidden": false,
-                                        "query": {
-                                            "datasource": {
-                                                "name": "PBFA97CFB590B2093"
-                                            },
-                                            "group": "prometheus",
-                                            "kind": "DataQuery",
-                                            "spec": {
-                                                "editorMode": "code",
-                                                "exemplar": true,
-                                                "expr": "histogram_quantile(0.95, sum(rate(http_server_requests_milliseconds_bucket{uri=~\".*\"}[$__rate_interval])) by (le))",
-                                                "legendFormat": "tp95",
-                                                "range": true
-                                            },
-                                            "version": "v0"
-                                        },
-                                        "refId": "C"
-                                    }
-                                }
-                            ],
-                            "queryOptions": {},
-                            "transformations": []
-                        }
-                    },
-                    "description": "",
-                    "id": 4,
-                    "links": [],
-                    "title": "latency for All",
-                    "vizConfig": {
-                        "group": "timeseries",
-                        "kind": "VizConfig",
-                        "spec": {
-                            "fieldConfig": {
-                                "defaults": {
-                                    "color": {
-                                        "mode": "palette-classic"
-                                    },
-                                    "custom": {
-                                        "axisBorderShow": false,
-                                        "axisCenteredZero": false,
-                                        "axisColorMode": "text",
-                                        "axisLabel": "",
-                                        "axisPlacement": "auto",
-                                        "barAlignment": 0,
-                                        "barWidthFactor": 0.6,
-                                        "drawStyle": "line",
-                                        "fillOpacity": 0,
-                                        "gradientMode": "none",
-                                        "hideFrom": {
-                                            "legend": false,
-                                            "tooltip": false,
-                                            "viz": false
-                                        },
-                                        "insertNulls": false,
-                                        "lineInterpolation": "linear",
-                                        "lineWidth": 1,
-                                        "pointSize": 5,
-                                        "scaleDistribution": {
-                                            "type": "linear"
-                                        },
-                                        "showPoints": "auto",
-                                        "showValues": false,
-                                        "spanNulls": false,
-                                        "stacking": {
-                                            "group": "A",
-                                            "mode": "none"
-                                        },
-                                        "thresholdsStyle": {
-                                            "mode": "off"
-                                        }
-                                    },
-                                    "thresholds": {
-                                        "mode": "absolute",
-                                        "steps": [
-                                            {
-                                                "color": "green",
-                                                "value": 0
-                                            },
-                                            {
-                                                "color": "red",
-                                                "value": 80
-                                            }
-                                        ]
-                                    },
-                                    "unit": "ms"
-                                },
-                                "overrides": []
-                            },
-                            "options": {
-                                "legend": {
-                                    "calcs": [],
-                                    "displayMode": "list",
-                                    "placement": "bottom",
-                                    "showLegend": true
-                                },
-                                "tooltip": {
-                                    "hideZeros": false,
-                                    "mode": "single",
-                                    "sort": "none"
-                                }
-                            }
-                        },
-                        "version": "13.3.1"
-                    }
-                }
-            },
             "panel-6": {
                 "kind": "Panel",
                 "spec": {
@@ -341,6 +181,122 @@
                         "version": "13.3.1"
                     }
                 }
+            },
+            "panel-7": {
+                "kind": "Panel",
+                "spec": {
+                    "data": {
+                        "kind": "QueryGroup",
+                        "spec": {
+                            "queries": [
+                                {
+                                    "kind": "PanelQuery",
+                                    "spec": {
+                                        "hidden": false,
+                                        "query": {
+                                            "datasource": {
+                                                "name": "PBFA97CFB590B2093"
+                                            },
+                                            "group": "prometheus",
+                                            "kind": "DataQuery",
+                                            "spec": {
+                                                "editorMode": "code",
+                                                "exemplar": true,
+                                                "expr": "sum by (outcome) (\n  rate(http_server_requests_milliseconds_bucket{outcome!=\"SUCCESS\", le=\"+Inf\"}[$__rate_interval])\n)",
+                                                "instant": false,
+                                                "legendFormat": "__auto",
+                                                "range": true
+                                            },
+                                            "version": "v0"
+                                        },
+                                        "refId": "A"
+                                    }
+                                }
+                            ],
+                            "queryOptions": {},
+                            "transformations": []
+                        }
+                    },
+                    "description": "Error throuput",
+                    "id": 7,
+                    "links": [],
+                    "title": "Erros/s",
+                    "vizConfig": {
+                        "group": "timeseries",
+                        "kind": "VizConfig",
+                        "spec": {
+                            "fieldConfig": {
+                                "defaults": {
+                                    "color": {
+                                        "mode": "palette-classic"
+                                    },
+                                    "custom": {
+                                        "axisBorderShow": false,
+                                        "axisCenteredZero": false,
+                                        "axisColorMode": "text",
+                                        "axisLabel": "",
+                                        "axisPlacement": "auto",
+                                        "barAlignment": 0,
+                                        "barWidthFactor": 0.6,
+                                        "drawStyle": "line",
+                                        "fillOpacity": 0,
+                                        "gradientMode": "none",
+                                        "hideFrom": {
+                                            "legend": false,
+                                            "tooltip": false,
+                                            "viz": false
+                                        },
+                                        "insertNulls": false,
+                                        "lineInterpolation": "linear",
+                                        "lineWidth": 1,
+                                        "pointSize": 5,
+                                        "scaleDistribution": {
+                                            "type": "linear"
+                                        },
+                                        "showPoints": "auto",
+                                        "showValues": false,
+                                        "spanNulls": false,
+                                        "stacking": {
+                                            "group": "A",
+                                            "mode": "none"
+                                        },
+                                        "thresholdsStyle": {
+                                            "mode": "off"
+                                        }
+                                    },
+                                    "thresholds": {
+                                        "mode": "absolute",
+                                        "steps": [
+                                            {
+                                                "color": "green",
+                                                "value": 0
+                                            },
+                                            {
+                                                "color": "red",
+                                                "value": 80
+                                            }
+                                        ]
+                                    }
+                                },
+                                "overrides": []
+                            },
+                            "options": {
+                                "legend": {
+                                    "calcs": [],
+                                    "displayMode": "list",
+                                    "placement": "bottom",
+                                    "showLegend": true
+                                },
+                                "tooltip": {
+                                    "hideZeros": false,
+                                    "mode": "single",
+                                    "sort": "none"
+                                }
+                            }
+                        },
+                        "version": "13.3.1"
+                    }
+                }
             }
         },
         "layout": {
@@ -378,9 +334,9 @@
                         "spec": {
                             "element": {
                                 "kind": "ElementReference",
-                                "name": "panel-4"
+                                "name": "panel-7"
                             },
-                            "height": 10,
+                            "height": 8,
                             "width": 23,
                             "x": 0,
                             "y": 25
